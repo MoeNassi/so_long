@@ -1,62 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readmapp.c                                         :+:      :+:    :+:   */
+/*   readmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/16 19:23:35 by mnassi           ###   ########.fr       */
+/*   Created: 2022/12/16 14:10:31 by mnassi            #+#    #+#             */
+/*   Updated: 2022/12/16 19:11:57 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "get_next_line.h"
 
-char	**reading(t_var *read, t_text *big)
+void	reading1(t_var *read, t_text *big)
 {
-	int		i;
-	int		j;
-	int		x;
-	int		y;
-	int		fd;
+	int			i;
+	int			j;
+	int			y;
+	int			x;
+	char		*blocks[34];
 
-	i = 0;
-	y = 0;
-	fd = open("map1.ber", O_RDONLY);
-	char **ptr = (char **)malloc(33);
-	ptr[0] = get_next_line(fd);
-
-	printf("%s", "hello");
-	while (ptr[i++])
-		ptr[i] = get_next_line(fd);
-	ptr[31] = NULL;
 	i = -1;
-	while (ptr[++i])
+	y = 0;
+	mlx_clear_window(read->mlx, read->mlx_win);
+	play(blocks);
+	while (blocks[++i])
 	{
 		j = 0;
 		x = 0;
-		while(ptr[i][j])
+		while(blocks[i][j])
 		{
-			if (ptr[i][j] == '1')
+			if (blocks[i][j] && blocks[i][j] == '1')
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->ptr, x, y);
-			else if (ptr[i][j] == '0')
+			else if (blocks[i][j] && blocks[i][j] == '0')
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-			else if (ptr[i][j] == 'E')
+			else if (blocks[i][j] && blocks[i][j] == 'E')
 			{
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 				mlx_put_image_to_window(read->mlx, read->mlx_win, big->door, x, y);
 			}
-			else if (ptr[i][j] == 'P')
+			else if (blocks[i][j] == 'P')
 			{
-				read->p1 = x;
-				read->p2 = y;
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-				mlx_put_image_to_window(read->mlx, read->mlx_win, big->player, x, y);
+				if (blocks[i+1][j] == 0)
+				{	
+					blocks[i+1][j] = 'P';
+					mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
+				}
 			}
-			else if (ptr[i][j] == 'C')
+			else if (blocks[i][j] && blocks[i][j] == 'C')
 			{
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 				mlx_put_image_to_window(read->mlx, read->mlx_win, big->res, x, y);
@@ -66,14 +59,4 @@ char	**reading(t_var *read, t_text *big)
 		}
 		y += 32;
 	}
-
-
-	return ptr;
 }
-
-// int main()
-// {
-// 	t_text 	*big;
-// 	t_var 	*read;
-// 	reading(read, big);
-// }
