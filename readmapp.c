@@ -6,14 +6,14 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/16 19:23:35 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:37:34 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
+#include "get_next_line.h"
 #include <fcntl.h>
-#include <stdio.h>
 
 char	**reading(t_var *read, t_text *big)
 {
@@ -22,17 +22,16 @@ char	**reading(t_var *read, t_text *big)
 	int		x;
 	int		y;
 	int		fd;
+	char	**ptr;
 
 	i = 0;
 	y = 0;
-	fd = open("map1.ber", O_RDONLY);
-	char **ptr = (char **)malloc(33);
+	fd = open("map.ber", O_RDONLY);
+	ptr = (char **)malloc(33 * sizeof(char *));
 	ptr[0] = get_next_line(fd);
-
-	printf("%s", "hello");
 	while (ptr[i++])
 		ptr[i] = get_next_line(fd);
-	ptr[31] = NULL;
+	ptr[i] = NULL;
 	i = -1;
 	while (ptr[++i])
 	{
@@ -66,14 +65,5 @@ char	**reading(t_var *read, t_text *big)
 		}
 		y += 32;
 	}
-
-
-	return ptr;
+	return (ptr);
 }
-
-// int main()
-// {
-// 	t_text 	*big;
-// 	t_var 	*read;
-// 	reading(read, big);
-// }
