@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/18 17:25:34 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/21 11:32:12 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <fcntl.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct s_mlx
 {
@@ -28,7 +29,12 @@ typedef struct s_mlx
 	char		**map;
 	int			x;
 	int			y;
+	int			count;
+	void		*door1;
+	int			secondcount;
 	int			p1;
+	int			doorp1;
+	int			doorp2;
 	int			p2;
 }				t_var;
 
@@ -41,8 +47,21 @@ typedef struct s_text
 	char	*empty;
 }				t_text;
 
-char	**reading(t_var *read, t_text *big);
+typedef struct s_movement
+{
+	void	*first;
+	void	*second;
+	void	*third;
+	void	*fourth;
+	void	*fifth;
+	void	*sixth;
+}				t_movement;
+
+char	**reading(char **av);
+void	copy(char **av, t_var *read, t_text *big);
 char	*get_next_line(int fd);
 void	mapchecker(t_var *check);
+int		ft_error(int exp);
+int		heiwei(t_var *count, char declare);
 
 #endif

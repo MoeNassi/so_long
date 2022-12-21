@@ -1,7 +1,7 @@
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-SRC = so_long.c readmapp.c mapchecker.c get_next_line.c get_next_line_utils.c
+CFLAGS = -Wall -Wextra -Werror -g
+SRC = so_long.c readmapp.c mapchecker.c get_next_line.c get_next_line_utils.c ft_error.c heiwei.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
@@ -9,7 +9,7 @@ all : $(NAME)
 $(NAME): $(OBJ) 
 	$(CC) $(CFLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME) libft.a
 
-%.o : %.c
+%.o : %.c so_long.h
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean :
