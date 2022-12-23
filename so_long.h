@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/21 11:32:12 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/23 11:17:13 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_mlx
 	int			x;
 	int			y;
 	int			count;
+	int			checkp;
+	void		*door;
 	void		*door1;
-	int			secondcount;
+	void*		secondcount;
 	int			p1;
 	int			doorp1;
 	int			doorp2;
@@ -41,7 +43,6 @@ typedef struct s_mlx
 typedef struct s_text
 {
 	void	*player;
-	void	*door;
 	void	*res;
 	char	**blocks;
 	char	*empty;
@@ -61,6 +62,7 @@ char	**reading(char **av);
 void	copy(char **av, t_var *read, t_text *big);
 char	*get_next_line(int fd);
 void	mapchecker(t_var *check);
+void	enemy(t_var *move, t_movement *frame);
 int		ft_error(int exp);
 int		heiwei(t_var *count, char declare);
 

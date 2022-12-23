@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/21 11:32:34 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/23 11:20:44 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ char	**reading(char **av)
 		ft_error(1);
 	ptr[0] = get_next_line(fd);
 	while (ptr[i++])
+	{
+		if (i > 33)
+			ft_error(2);
 		ptr[i] = get_next_line(fd);
+	}
 	ptr[i] = NULL;
 	return (ptr);
 }
@@ -42,7 +46,6 @@ void	copy(char **av, t_var *read, t_text *big)
 	int		x;
 	int		y;
 
-	read->count = 0;
 	read->map = reading(av);
 	i = -1;
 	y = 0;
@@ -61,7 +64,7 @@ void	copy(char **av, t_var *read, t_text *big)
 				read->doorp1 = x;
 				read->doorp2 = y;
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-				mlx_put_image_to_window(read->mlx, read->mlx_win, big->door, x, y);
+				mlx_put_image_to_window(read->mlx, read->mlx_win, read->door, x, y);
 			}
 			else if (read->map[i][j] == 'P')
 			{

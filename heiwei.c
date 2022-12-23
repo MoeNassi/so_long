@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 10:48:43 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/20 18:18:50 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/22 11:48:46 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ int		heiwei(t_var *count, char declare)
 				ft_error(2);
 			y++;
 		}
-		// while (count->map[x][y])
-		// {
-		// 	if (count->map[x][y] != '1')
-		// 		ft_error(2);
-		// 	x++;
-		// }
 		return (y * 32);
 	}
 	if (declare == 'h')
@@ -41,6 +35,8 @@ int		heiwei(t_var *count, char declare)
 		{
 			while (count->map[x][y] != '\n' && count->map[x][y])
 				y++;
+			if (count->map[x][y - 1] != '1')
+				ft_error(2);
 			x++;
 		}
 		return (x * 32);
