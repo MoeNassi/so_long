@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:06:23 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/23 11:26:22 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/24 18:48:58 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "so_long.h"
 #include "get_next_line.h"
 #include "libft/libft.h"
+
+void	checkpaths1(t_var *move)
+{
+	move->secondcount = mlx_xpm_file_to_image(move->mlx, "./pixe/monster/0.xpm", &move->x, &move->y);
+	move->secdoor = mlx_xpm_file_to_image(move->mlx, "./pixe/door/open.xpm", &move->x, &move->y);
+	move->near = mlx_xpm_file_to_image(move->mlx, "./pixe/door/sec.xpm", &move->x, &move->y);
+	if (move->secdoor == NULL || move->secondcount == NULL || move->near == NULL)
+		ft_error(6);
+}
 
 void	checkpaths(t_var *pcheck, t_text *seccheck)
 {
@@ -23,15 +32,18 @@ void	checkpaths(t_var *pcheck, t_text *seccheck)
 	i = heiwei(pcheck, 'w');
 	j = heiwei(pcheck, 'h');
 	pcheck->mlx_win = mlx_new_window(pcheck->mlx, i, j, "mnassi");
-	pcheck->ptr = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/wall/minecraft.xpm", &pcheck->x, &pcheck->y);
-	pcheck->p = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/wall/blackwall.xpm", &pcheck->x, &pcheck->y);
-	pcheck->door = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/door/hornet.xpm", &pcheck->x, &pcheck->y);
-	pcheck->player = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/player.xpm", &pcheck->x, &pcheck->y);	
-	seccheck->player = mlx_xpm_file_to_image(pcheck->mlx, "./pixe//player/player.xpm", &pcheck->x, &pcheck->y);
+	pcheck->ptr = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/wall/wood.xpm", &pcheck->x, &pcheck->y);
+	pcheck->p = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/floor/dirt1.xpm", &pcheck->x, &pcheck->y);
+	pcheck->door = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/door/close.xpm", &pcheck->x, &pcheck->y);
+	pcheck->right = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/right.xpm", &pcheck->x, &pcheck->y);	
+	seccheck->player = mlx_xpm_file_to_image(pcheck->mlx, "./pixe//player/right.xpm", &pcheck->x, &pcheck->y);
 	seccheck->res = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/collectibles/geo.xpm", &pcheck->x, &pcheck->y);
-	pcheck->player1 = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/player1.xpm", &pcheck->x, &pcheck->y);
-	if (pcheck->ptr == NULL || pcheck->p == NULL || pcheck->door == NULL || pcheck->player == NULL ||
-		seccheck->player == NULL || seccheck->res == NULL || pcheck->player1 == NULL)
+	pcheck->left = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/left.xpm", &pcheck->x, &pcheck->y);
+	pcheck->up = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/up.xpm", &pcheck->x, &pcheck->y);
+	pcheck->down = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/player/down.xpm", &pcheck->x, &pcheck->y);
+	if (pcheck->ptr == NULL || pcheck->p == NULL || pcheck->door == NULL || pcheck->right == NULL ||
+		seccheck->player == NULL || pcheck->left == NULL || seccheck->res == NULL || pcheck->left == NULL ||
+		pcheck->up == NULL || pcheck->down == NULL )
 		ft_error(6);
 }
 
@@ -59,6 +71,8 @@ void	checkcompo(t_var *scheck)
 		}
 		index++;
 	}
+	if (P == 0 || E == 0)
+		ft_error(2);
 }
 
 void	checkeverything(t_var *dcheck)
@@ -102,8 +116,9 @@ void	rightside(t_var *right)
 			return ;
 		}
 		mlx_put_image_to_window(right->mlx, right->mlx_win, right->p, right->p1, right->p2);
-		mlx_put_image_to_window(right->mlx, right->mlx_win, right->player, right->p1 + 32, right->p2);
+		mlx_put_image_to_window(right->mlx, right->mlx_win, right->right, right->p1 + 32, right->p2);
 		right->p1 += 32;
+		
 	}
 }
 
@@ -125,7 +140,7 @@ void	leftside(t_var *left)
 			return ;
 		}
 		mlx_put_image_to_window(left->mlx, left->mlx_win, left->p, left->p1, left->p2);
-		mlx_put_image_to_window(left->mlx, left->mlx_win, left->player1, left->p1 - 32, left->p2);
+		mlx_put_image_to_window(left->mlx, left->mlx_win, left->left, left->p1 - 32, left->p2);
 		left->p1 -= 32;
 	}
 }
@@ -148,7 +163,7 @@ void	upside(t_var *up)
 			return ;
 		}
 		mlx_put_image_to_window(up->mlx, up->mlx_win, up->p, up->p1, up->p2);
-		mlx_put_image_to_window(up->mlx, up->mlx_win, up->player, up->p1, up->p2 - 32);
+		mlx_put_image_to_window(up->mlx, up->mlx_win, up->up, up->p1, up->p2 - 32);
 		up->p2 -= 32;
 	}
 }
@@ -171,15 +186,14 @@ void	downside(t_var *down)
 			return ;
 		}
 		mlx_put_image_to_window(down->mlx, down->mlx_win, down->p, down->p1, down->p2);
-		mlx_put_image_to_window(down->mlx, down->mlx_win, down->player, down->p1, down->p2 + 32);
+		mlx_put_image_to_window(down->mlx, down->mlx_win, down->down, down->p1, down->p2 + 32);
 		down->p2 += 32;
 	}
 }
 
 int		keypress(int keycode, t_var *big)
 {
-	static int		i;
-
+	upmove(big, keycode);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 2)
@@ -190,11 +204,11 @@ int		keypress(int keycode, t_var *big)
 		upside(big);
 	if (keycode == 1)
 		downside(big);
-	if (big->map[big->p2 / 32][big->p1 / 32] == 'E' && big->count <= 0)
+	if (big->map[big->p2 / 32][big->p1 / 32] == 'E' && big->count == 0)
 		ft_error(3);
-	ft_putnbr_fd(i, 1);
-	i++;
-	ft_putstr_fd("\n", 1);
+	if (big->map[big->ene1 / 32][big->ene2 / 32] == big->map[big->p2 / 32][big->p1 / 32])
+		ft_error(7);
+	ft_animation(big);
 	return (0);
 }
 
@@ -266,11 +280,12 @@ int	main(int ac, char **av)
 		bigbrother.map = reading(av);
 		if (*bigbrother.map == NULL)
 			ft_error(2);
+		checkpaths1(&bigbrother);
 		checkeverything(&bigbrother);
 		checkpaths(&bigbrother, &big);
 		copy(av, &bigbrother, &big);
-		if (!ft_test(bigbrother.map, bigbrother.p2 / 32, bigbrother.p1 / 32))
-			ft_error(2);
+		// if (!ft_test(bigbrother.map, bigbrother.p2 / 32, bigbrother.p1 / 32))
+		// 	ft_error(2);
 		mlx_hook(bigbrother.mlx_win, 2, 1L<<0, keypress, &bigbrother);
 		mlx_loop(bigbrother.mlx);
 		mlx_destroy_window(bigbrother.mlx, bigbrother.mlx_win);

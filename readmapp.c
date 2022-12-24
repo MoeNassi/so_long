@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/23 11:20:44 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/23 17:51:03 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	copy(char **av, t_var *read, t_text *big)
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 			else if (read->map[i][j] == 'E')
 			{
-				read->doorp1 = x;
-				read->doorp2 = y;
+				read->doorp1 = y;
+				read->doorp2 = x;
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->door, x, y);
 			}
@@ -79,6 +79,7 @@ void	copy(char **av, t_var *read, t_text *big)
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 				mlx_put_image_to_window(read->mlx, read->mlx_win, big->res, x, y);
 			}
+			enemy(read, x, y, i, j);
 			x += 32;
 			j++;
 		}
