@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/23 17:51:03 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/26 17:48:23 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	**reading(char **av)
 {
 	int		fd;
 	char	**ptr;
+	char	*line;
 	int		i;
 
 	i = 0;
@@ -28,32 +29,34 @@ char	**reading(char **av)
 	ptr = (char **)malloc(33 * sizeof(char *));
 	if (!ptr)
 		ft_error(1);
-	ptr[0] = get_next_line(fd);
-	while (ptr[i++])
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (i > 33)
 			ft_error(2);
-		ptr[i] = get_next_line(fd);
+		ptr[i++] = ft_strdup(line);
+		free(line);
+		line = get_next_line(fd);
 	}
 	ptr[i] = NULL;
+	close(fd);
 	return (ptr);
 }
 
-void	copy(char **av, t_var *read, t_text *big)
+void	copy(t_var *read, t_text *big)
 {
 	int		i;
 	int		j;
 	int		x;
 	int		y;
 
-	read->map = reading(av);
 	i = -1;
 	y = 0;
 	while (read->map[++i])
 	{
 		j = 0;
 		x = 0;
-		while(read->map[i][j] && read->map[i][j] != '\n')
+		while (read->map[i][j] && read->map[i][j] != '\n')
 		{
 			if (read->map[i][j] == '1')
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->ptr, x, y);
@@ -79,7 +82,6 @@ void	copy(char **av, t_var *read, t_text *big)
 				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
 				mlx_put_image_to_window(read->mlx, read->mlx_win, big->res, x, y);
 			}
-			enemy(read, x, y, i, j);
 			x += 32;
 			j++;
 		}

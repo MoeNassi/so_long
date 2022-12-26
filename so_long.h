@@ -6,17 +6,19 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/24 18:03:46 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/26 17:04:48 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdlib.h>
+
+
 
 typedef struct s_mlx
 {
@@ -36,15 +38,12 @@ typedef struct s_mlx
 	int			checkp;
 	void		*door;
 	void		*door1;
-	void*		secondcount;
 	int			p1;
 	int			doorp1;
 	int			doorp2;
 	int			p2;
-	int			ene1;
-	int			ene2;
 	void		*secdoor;
-	void		*near;
+	char		**arr;
 }				t_var;
 
 typedef struct s_text
@@ -56,14 +55,24 @@ typedef struct s_text
 }				t_text;
 
 char	**reading(char **av);
-void	copy(char **av, t_var *read, t_text *big);
+void	copy(t_var *read, t_text *big);
 char	*get_next_line(int fd);
+void	destroyleaks(t_var *remove, t_text *rem);
 void	ft_animation(t_var *animsp);
 void	upmove(t_var *up, int keycode);
 void	mapchecker(t_var *check);
 int		ft_error(int exp);
-void	enemy(t_var *first, int x, int y, int i, int j);
+void	freeall(char **ptr);
 int		heiwei(t_var *count, char declare);
 void	ft_countmoves(t_var *first, int i);
+void	checkcompo(t_var *scheck);
+void	rightside(t_var *right);
+void	upside(t_var *up);
+void	downside(t_var *down);
+void	leftside(t_var *left);
+void	checkeverything(t_var *dcheck);
+void	checkpaths(t_var *pcheck, t_text *seccheck);
+void	checkpath1(t_var *first, t_text *sec);
+int		ft_back(char **arr, int i, int j);
 
 #endif

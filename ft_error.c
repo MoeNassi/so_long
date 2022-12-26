@@ -6,27 +6,29 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 09:53:18 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/23 18:11:54 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/26 16:41:32 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
 #include "so_long.h"
+#include "libft/libft.h"
 
-int		ft_error(int exp)
+int	ft_error(int exp)
 {
 	if (exp == 1)
-		printf("%s\n", "No arguments detected");
+		ft_putstr_fd("No arguments detected\n", 1);
 	if (exp == 2)
-		printf("%s\n", "Error in map please fix your map");
+		ft_putstr_fd("Error in map please fix your map\n", 1);
 	if (exp == 3)
-		printf("%s\n", "Winner Winner Chicken Dinner #1 battleroyale fortnite");
+		ft_putstr_fd("Winner Winner Chicken Dinner #1\n", 1);
 	if (exp == 4)
-		printf("%s\n", "error");
+		ft_putstr_fd("error\n", 1);
 	if (exp == 5)
-		printf("%s\n", "Map Not Found");
+		ft_putstr_fd("Map Not Found\n", 1);
 	if (exp == 6)
-		printf("%s\n", "Path Not Found");
+		ft_putstr_fd("Path Not Found\n", 1);
 	if (exp == 7)
-		printf("%s\n", "Learn to play NOOB HAHA EZ");
+		ft_putstr_fd("Learn to play NOOB HAHA EZ\n", 1);
 	exit(0);
 }

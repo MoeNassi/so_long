@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heiwei.c                                           :+:      :+:    :+:   */
+/*   backtracking.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 10:48:43 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:46:39 by mnassi           ###   ########.fr       */
+/*   Created: 2022/12/25 10:22:22 by mnassi            #+#    #+#             */
+/*   Updated: 2022/12/26 16:40:59 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
 #include "so_long.h"
 
-int	heiwei(t_var *count, char declare)
+int	ft_back(char **arr, int i, int j)
 {
-	int		y;
-	int		x;
-
-	x = 0;
-	y = 0;
-	if (declare == 'w')
-	{
-		while (count->map[0][y] != '\n' && count->map[0][y])
-		{
-			if (count->map[0][y] != '1')
-				ft_error(2);
-			y++;
-		}
-		return (y * 32);
-	}
-	if (declare == 'h')
-	{
-		while (count->map[x])
-		{
-			while (count->map[x][y] != '\n' && count->map[x][y])
-				y++;
-			if (count->map[x][y - 1] != '1')
-				ft_error(2);
-			x++;
-		}
-		return (x * 32);
-	}
+	if (arr[i][j] == 'E')
+		return (1);
+	if (arr[i][j] == '1')
+		return (0);
+	arr[i][j] = '1';
+	if (ft_back(arr, i, j + 1))
+		return (1);
+	if (ft_back(arr, i, j - 1))
+		return (1);
+	if (ft_back(arr, i + 1, j))
+		return (1);
+	if (ft_back(arr, i - 1, j))
+		return (1);
 	return (0);
 }

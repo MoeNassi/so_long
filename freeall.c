@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_counter.c                                       :+:      :+:    :+:   */
+/*   freeall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 14:47:53 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 18:21:27 by mnassi           ###   ########.fr       */
+/*   Created: 2022/12/26 11:51:40 by mnassi            #+#    #+#             */
+/*   Updated: 2022/12/26 15:39:51 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
-#include "libft/libft.h"
 
-void	ft_countmoves(t_var *first, int i)
+void	freeall(char **ptr)
 {
-	char	*count = ft_itoa(i);
-	mlx_put_image_to_window(first->mlx, first->mlx_win, first->ptr, 0, 0);
-	mlx_string_put(first->mlx, first->mlx_win, 0, 0, 0x000000, count);
-	free(count);
+	int		i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
+	ptr = NULL;
 }
