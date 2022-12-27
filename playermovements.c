@@ -6,102 +6,110 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:49:40 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:36:20 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/27 11:16:46 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
 
-void	rightside(t_var *right)
+void	rightside(t_var *r)
 {
-	if (right->map[right->p2 / 32][right->p1 / 32 + 1] != '1')
+	if (r->map[r->p2 / 32][r->p1 / 32 + 1] != '1')
 	{
-		if (right->map[right->p2 / 32][right->p1 / 32 + 1] == 'C')
+		if (r->map[r->p2 / 32][r->p1 / 32 + 1] == 'C')
 		{
-			if (right->count > 0)
-				right->count--;
-			right->map[right->p2 / 32][right->p1 / 32 + 1] = '0';
-			mlx_put_image_to_window(right->mlx, right->mlx_win, right->p, right->p1 + 32, right->p2);
+			r->count--;
+			r->map[r->p2 / 32][r->p1 / 32 + 1] = '0';
+			mlx_put_image_to_window(r->mlx, r->mlx_win, r->p,
+				r->p1 + 32, r->p2);
 		}
-		if (right->map[right->p2 / 32][right->p1 / 32 + 1] == 'E' && right->count > 0)
+		if (r->map[r->p2 / 32][r->p1 / 32 + 1] == 'E' && r->count > 0)
 		{
-			mlx_put_image_to_window(right->mlx, right->mlx_win, right->p, right->p1 + 32, right->p2);
-			mlx_put_image_to_window(right->mlx, right->mlx_win, right->door, right->p1 + 32, right->p2);
+			mlx_put_image_to_window(r->mlx, r->mlx_win, r->p,
+				r->p1 + 32, r->p2);
+			mlx_put_image_to_window(r->mlx, r->mlx_win, r->door,
+				r->p1 + 32, r->p2);
 			return ;
 		}
-		mlx_put_image_to_window(right->mlx, right->mlx_win, right->p, right->p1, right->p2);
-		mlx_put_image_to_window(right->mlx, right->mlx_win, right->right, right->p1 + 32, right->p2);
-		right->p1 += 32;
-		
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->p, r->p1, r->p2);
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->right,
+			r->p1 + 32, r->p2);
+		r->p1 += 32;
 	}
 }
 
-void	leftside(t_var *left)
+void	leftside(t_var *l)
 {
-	if (left->map[left->p2 / 32][left->p1 / 32 - 1] != '1')
+	if (l->map[l->p2 / 32][l->p1 / 32 - 1] != '1')
 	{
-		if (left->map[left->p2 / 32][left->p1 / 32 - 1] == 'C')
+		if (l->map[l->p2 / 32][l->p1 / 32 - 1] == 'C')
 		{
-			if (left->count > 0)
-				left->count--;
-			left->map[left->p2 / 32][left->p1 / 32 - 1] = '0';
-			mlx_put_image_to_window(left->mlx, left->mlx_win, left->p, left->p1 - 32, left->p2);
+			l->count--;
+			l->map[l->p2 / 32][l->p1 / 32 - 1] = '0';
+			mlx_put_image_to_window(l->mlx, l->mlx_win, l->p,
+				l->p1 - 32, l->p2);
 		}
-		if (left->map[left->p2 / 32][left->p1 / 32 - 1] == 'E' && left->count > 0)
+		if (l->map[l->p2 / 32][l->p1 / 32 - 1] == 'E' && l->count > 0)
 		{
-			mlx_put_image_to_window(left->mlx, left->mlx_win, left->p, left->p1 - 32, left->p2);
-			mlx_put_image_to_window(left->mlx, left->mlx_win, left->door, left->p1 - 32, left->p2);
+			mlx_put_image_to_window(l->mlx, l->mlx_win, l->p,
+				l->p1 - 32, l->p2);
+			mlx_put_image_to_window(l->mlx, l->mlx_win, l->door,
+				l->p1 - 32, l->p2);
 			return ;
 		}
-		mlx_put_image_to_window(left->mlx, left->mlx_win, left->p, left->p1, left->p2);
-		mlx_put_image_to_window(left->mlx, left->mlx_win, left->left, left->p1 - 32, left->p2);
-		left->p1 -= 32;
+		mlx_put_image_to_window(l->mlx, l->mlx_win, l->p, l->p1, l->p2);
+		mlx_put_image_to_window(l->mlx, l->mlx_win, l->left, l->p1 - 32, l->p2);
+		l->p1 -= 32;
 	}
 }
 
-void	upside(t_var *up)
+void	upside(t_var *u)
 {
-	if (up->map[up->p2 / 32 - 1][up->p1 / 32] != '1')
+	if (u->map[u->p2 / 32 - 1][u->p1 / 32] != '1')
 	{
-		if (up->map[up->p2 / 32 - 1][up->p1 / 32] == 'C')
+		if (u->map[u->p2 / 32 - 1][u->p1 / 32] == 'C')
 		{
-			if (up->count > 0)
-				up->count--;
-			up->map[up->p2 / 32 - 1][up->p1 / 32] = '0';
-			mlx_put_image_to_window(up->mlx, up->mlx_win, up->p, up->p1, up->p2 - 32);
+			u->count--;
+			u->map[u->p2 / 32 - 1][u->p1 / 32] = '0';
+			mlx_put_image_to_window(u->mlx, u->mlx_win, u->p,
+				u->p1, u->p2 - 32);
 		}
-		if (up->map[up->p2 / 32 - 1][up->p1 / 32] == 'E' && up->count > 0)
+		if (u->map[u->p2 / 32 - 1][u->p1 / 32] == 'E' && u->count > 0)
 		{
-			mlx_put_image_to_window(up->mlx, up->mlx_win, up->p, up->p1, up->p2 - 32);
-			mlx_put_image_to_window(up->mlx, up->mlx_win, up->door, up->p1, up->p2 - 32);
+			mlx_put_image_to_window(u->mlx, u->mlx_win, u->p,
+				u->p1, u->p2 - 32);
+			mlx_put_image_to_window(u->mlx, u->mlx_win,
+				u->door, u->p1, u->p2 - 32);
 			return ;
 		}
-		mlx_put_image_to_window(up->mlx, up->mlx_win, up->p, up->p1, up->p2);
-		mlx_put_image_to_window(up->mlx, up->mlx_win, up->up, up->p1, up->p2 - 32);
-		up->p2 -= 32;
+		mlx_put_image_to_window(u->mlx, u->mlx_win, u->p, u->p1, u->p2);
+		mlx_put_image_to_window(u->mlx, u->mlx_win, u->up, u->p1, u->p2 - 32);
+		u->p2 -= 32;
 	}
 }
 
-void	downside(t_var *down)
+void	downside(t_var *d)
 {
-	if (down->map[down->p2 / 32 + 1][down->p1 / 32] != '1')
+	if (d->map[d->p2 / 32 + 1][d->p1 / 32] != '1')
 	{
-		if (down->map[down->p2 / 32 + 1][down->p1 / 32] == 'C')
+		if (d->map[d->p2 / 32 + 1][d->p1 / 32] == 'C')
 		{
-			if (down->count > 0)
-				down->count--;
-			down->map[down->p2 / 32 + 1][down->p1 / 32] = '0';
-			mlx_put_image_to_window(down->mlx, down->mlx_win, down->p, down->p1, down->p2 + 32);
+			d->count--;
+			d->map[d->p2 / 32 + 1][d->p1 / 32] = '0';
+			mlx_put_image_to_window(d->mlx, d->mlx_win,
+				d->p, d->p1, d->p2 + 32);
 		}
-		if (down->map[down->p2 / 32 + 1][down->p1 / 32] == 'E' && down->count > 0)
+		if (d->map[d->p2 / 32 + 1][d->p1 / 32] == 'E' && d->count > 0)
 		{
-			mlx_put_image_to_window(down->mlx, down->mlx_win, down->p, down->p1, down->p2 + 32);
-			mlx_put_image_to_window(down->mlx, down->mlx_win, down->door, down->p1, down->p2 + 32);
+			mlx_put_image_to_window(d->mlx, d->mlx_win, d->p,
+				d->p1, d->p2 + 32);
+			mlx_put_image_to_window(d->mlx, d->mlx_win,
+				d->door, d->p1, d->p2 + 32);
 			return ;
 		}
-		mlx_put_image_to_window(down->mlx, down->mlx_win, down->p, down->p1, down->p2);
-		mlx_put_image_to_window(down->mlx, down->mlx_win, down->down, down->p1, down->p2 + 32);
-		down->p2 += 32;
+		mlx_put_image_to_window(d->mlx, d->mlx_win, d->p, d->p1, d->p2);
+		mlx_put_image_to_window(d->mlx, d->mlx_win, d->down, d->p1, d->p2 + 32);
+		d->p2 += 32;
 	}
 }

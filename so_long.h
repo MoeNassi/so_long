@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:04:48 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/27 11:10:33 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-
 
 typedef struct s_mlx
 {
@@ -63,13 +61,14 @@ void	upmove(t_var *up, int keycode);
 void	mapchecker(t_var *check);
 int		ft_error(int exp);
 void	freeall(char **ptr);
-int		heiwei(t_var *count, char declare);
+int		height(t_var *count);
+int		weight(t_var *he);
 void	ft_countmoves(t_var *first, int i);
 void	checkcompo(t_var *scheck);
-void	rightside(t_var *right);
-void	upside(t_var *up);
-void	downside(t_var *down);
-void	leftside(t_var *left);
+void	rightside(t_var *r);
+void	upside(t_var *u);
+void	downside(t_var *d);
+void	leftside(t_var *l);
 void	checkeverything(t_var *dcheck);
 void	checkpaths(t_var *pcheck, t_text *seccheck);
 void	checkpath1(t_var *first, t_text *sec);

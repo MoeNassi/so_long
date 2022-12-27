@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:16 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:48:23 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/27 11:17:53 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,29 @@ char	**reading(char **av)
 	return (ptr);
 }
 
-void	copy(t_var *read, t_text *big)
+void	receiver(char c, int x, int y, t_var *r)
+{
+	if (c == '1')
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->ptr, x, y);
+	else if (c == '0')
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->p, x, y);
+	else if (c == 'E')
+	{
+		r->doorp1 = y;
+		r->doorp2 = x;
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->p, x, y);
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->door, x, y);
+	}
+	else if (c == 'P')
+	{
+		r->p1 = x;
+		r->p2 = y;
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->p, x, y);
+		mlx_put_image_to_window(r->mlx, r->mlx_win, r->right, x, y);
+	}
+}
+
+void	copy(t_var *r, t_text *big)
 {
 	int		i;
 	int		j;
@@ -52,35 +74,18 @@ void	copy(t_var *read, t_text *big)
 
 	i = -1;
 	y = 0;
-	while (read->map[++i])
+	while (r->map[++i])
 	{
 		j = 0;
 		x = 0;
-		while (read->map[i][j] && read->map[i][j] != '\n')
+		while (r->map[i][j] && r->map[i][j] != '\n')
 		{
-			if (read->map[i][j] == '1')
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->ptr, x, y);
-			else if (read->map[i][j] == '0')
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-			else if (read->map[i][j] == 'E')
+			receiver(r->map[i][j], x, y, r);
+			if (r->map[i][j] == 'C')
 			{
-				read->doorp1 = y;
-				read->doorp2 = x;
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->door, x, y);
-			}
-			else if (read->map[i][j] == 'P')
-			{
-				read->p1 = x;
-				read->p2 = y;
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-				mlx_put_image_to_window(read->mlx, read->mlx_win, big->player, x, y);
-			}
-			else if (read->map[i][j] == 'C')
-			{
-				read->count++;
-				mlx_put_image_to_window(read->mlx, read->mlx_win, read->p, x, y);
-				mlx_put_image_to_window(read->mlx, read->mlx_win, big->res, x, y);
+				r->count++;
+				mlx_put_image_to_window(r->mlx, r->mlx_win, r->p, x, y);
+				mlx_put_image_to_window(r->mlx, r->mlx_win, big->res, x, y);
 			}
 			x += 32;
 			j++;

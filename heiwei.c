@@ -6,40 +6,42 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 10:48:43 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:46:39 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/27 10:32:50 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	heiwei(t_var *count, char declare)
+int	weight(t_var *he)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	while (he->map[x])
+	{
+		while (he->map[x][y] != '\n' && he->map[x][y])
+			y++;
+		if (he->map[x][y - 1] != '1')
+			ft_error(2);
+		x++;
+	}
+	return (x * 32);
+}
+
+int	height(t_var *count)
 {
 	int		y;
 	int		x;
 
 	x = 0;
 	y = 0;
-	if (declare == 'w')
+	while (count->map[0][y] != '\n' && count->map[0][y])
 	{
-		while (count->map[0][y] != '\n' && count->map[0][y])
-		{
-			if (count->map[0][y] != '1')
-				ft_error(2);
-			y++;
-		}
-		return (y * 32);
+		if (count->map[0][y] != '1')
+			ft_error(2);
+		y++;
 	}
-	if (declare == 'h')
-	{
-		while (count->map[x])
-		{
-			while (count->map[x][y] != '\n' && count->map[x][y])
-				y++;
-			if (count->map[x][y - 1] != '1')
-				ft_error(2);
-			x++;
-		}
-		return (x * 32);
-	}
-	return (0);
+	return (y * 32);
 }

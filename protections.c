@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 10:09:28 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:49:58 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/27 10:33:07 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	checkpaths(t_var *pcheck, t_text *seccheck)
 	int		i;
 	int		j;
 
-	i = heiwei(pcheck, 'w');
-	j = heiwei(pcheck, 'h');
+	i = height(pcheck);
+	j = weight(pcheck);
 	pcheck->mlx_win = mlx_new_window(pcheck->mlx, i, j, "mnassi");
 	pcheck->ptr = mlx_xpm_file_to_image(pcheck->mlx, "./pixe/floor/dirt1.xpm",
 			&pcheck->x, &pcheck->y);
