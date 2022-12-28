@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   upmove_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 14:23:42 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/27 11:41:51 by mnassi           ###   ########.fr       */
+/*   Created: 2022/12/27 11:41:40 by mnassi            #+#    #+#             */
+/*   Updated: 2022/12/27 12:50:07 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "so_long.h"
 #include "libft/libft.h"
 
-void	upmove(t_var *top, int keycode)
+void	upmove_bonus(t_var *top, int keycode)
 {
 	static int	i;
 
@@ -38,4 +38,5 @@ void	upmove(t_var *top, int keycode)
 		ft_putnbr_fd(i++, 1);
 		ft_putstr_fd("\n", 1);
 	}
+	ft_countmoves(top, i);
 }

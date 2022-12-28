@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 17:06:23 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/28 09:48:16 by mnassi           ###   ########.fr       */
+/*   Created: 2022/12/27 11:38:32 by mnassi            #+#    #+#             */
+/*   Updated: 2022/12/28 09:52:00 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	destroywin(int key, t_var *dest)
 
 int	keypress(int keycode, t_var *big)
 {
-	upmove(big, keycode);
+	upmove_bonus(big, keycode);
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 2)
@@ -38,6 +38,7 @@ int	keypress(int keycode, t_var *big)
 		downside(big);
 	if (big->map[big->p2 / 32][big->p1 / 32] == 'E' && big->count == 0)
 		ft_error(3);
+	ft_animation(big);
 	return (0);
 }
 

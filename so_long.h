@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/27 11:10:33 by mnassi           ###   ########.fr       */
+/*   Updated: 2022/12/28 09:42:42 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_animation(t_var *animsp);
 void	upmove(t_var *up, int keycode);
 void	mapchecker(t_var *check);
 int		ft_error(int exp);
-void	freeall(char **ptr);
 int		height(t_var *count);
 int		weight(t_var *he);
 void	ft_countmoves(t_var *first, int i);
@@ -70,6 +69,7 @@ void	upside(t_var *u);
 void	downside(t_var *d);
 void	leftside(t_var *l);
 void	checkeverything(t_var *dcheck);
+void	upmove_bonus(t_var *top, int keycode);
 void	checkpaths(t_var *pcheck, t_text *seccheck);
 void	checkpath1(t_var *first, t_text *sec);
 int		ft_back(char **arr, int i, int j);
