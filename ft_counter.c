@@ -6,13 +6,13 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 14:47:53 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/27 10:59:57 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/05 15:28:29 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
-#include "libft/libft.h"
+#include "so_long_tools/libft.h"
 
 void	ft_countmoves(t_var *first, int i)
 {

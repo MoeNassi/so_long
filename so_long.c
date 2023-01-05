@@ -6,14 +6,14 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:06:23 by mnassi            #+#    #+#             */
-/*   Updated: 2023/01/03 15:30:15 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/05 15:28:29 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
 #include "get_next_line.h"
-#include "libft/libft.h"
+#include "so_long_tools/libft.h"
 
 int	destroywin(int key, t_var *dest)
 {
