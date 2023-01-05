@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   freeall.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 11:51:40 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 15:39:51 by mnassi           ###   ########.fr       */
+/*   Created: 2022/10/13 22:56:58 by mnassi            #+#    #+#             */
+/*   Updated: 2022/11/08 10:15:48 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "so_long.h"
+#include "libft.h"
 
-void	freeall(char **ptr)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
+	size_t		i;
+	char		*p;
+	char		l;
 
+	l = (char )c;
+	p = (char *)s;
 	i = 0;
-	while (ptr[i])
+	while (i < n)
 	{
-		free(ptr[i]);
+		if (p[i] == l)
+			return (&p[i]);
 		i++;
 	}
-	free(ptr);
-	ptr = NULL;
+	return (0);
 }
