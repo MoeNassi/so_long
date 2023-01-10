@@ -6,20 +6,20 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:00:03 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 17:38:27 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:42:58 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
 
-void	ft_animation(t_var *animsp)
+void	ft_animation(t_var *anime)
 {
-	if (animsp->count == 0)
+	if (anime->count == 0)
 	{
-		mlx_put_image_to_window(animsp->mlx, animsp->mlx_win, animsp->p,
-			animsp->doorp2, animsp->doorp1);
-		mlx_put_image_to_window(animsp->mlx, animsp->mlx_win, animsp->secdoor,
-			animsp->doorp2, animsp->doorp1);
+		mlx_put_image_to_window(anime->mlx, anime->mlx_win, anime->p,
+			anime->doorp2, anime->doorp1);
+		mlx_put_image_to_window(anime->mlx, anime->mlx_win, anime->secdoor,
+			anime->doorp2, anime->doorp1);
 	}
 }

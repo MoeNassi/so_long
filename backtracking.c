@@ -6,27 +6,27 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 10:22:22 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/26 16:40:59 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:39:55 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include "so_long.h"
 
-int	ft_back(char **arr, int i, int j)
+int	ft_back(char **arr, int x, int y)
 {
-	if (arr[i][j] == 'E')
+	if (arr[x][y] == 'E')
 		return (1);
-	if (arr[i][j] == '1')
+	if (arr[x][y] == '1')
 		return (0);
-	arr[i][j] = '1';
-	if (ft_back(arr, i, j + 1))
+	arr[x][y] = '1';
+	if (ft_back(arr, x, y + 1))
 		return (1);
-	if (ft_back(arr, i, j - 1))
+	if (ft_back(arr, x, y - 1))
 		return (1);
-	if (ft_back(arr, i + 1, j))
+	if (ft_back(arr, x + 1, y))
 		return (1);
-	if (ft_back(arr, i - 1, j))
+	if (ft_back(arr, x - 1, y))
 		return (1);
 	return (0);
 }

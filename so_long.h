@@ -6,7 +6,7 @@
 /*   By: mnassi <mnassi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 13:41:35 by mnassi            #+#    #+#             */
-/*   Updated: 2022/12/28 12:53:12 by mnassi           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:40:08 by mnassi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	checkeverything(t_var *dcheck);
 void	upmove_bonus(t_var *top, int keycode);
 void	checkpaths(t_var *pcheck, t_text *seccheck);
 void	checkpath1(t_var *first, t_text *sec);
-int		ft_back(char **arr, int i, int j);
+int		ft_back(char **arr, int x, int y);
 
 #endif
